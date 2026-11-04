@@ -15,13 +15,24 @@ type PaginaTarefas = inferRouterOutputs<AppRouter>["tarefas"]["listar"];
 type Props = {
   // Primeira página já carregada no servidor (SSR).
   paginaInicial: PaginaTarefas;
+  // Mensagem de sucesso vinda do formulário de criação/edição.
+  mensagemInicial?: string;
 };
 
-export function ListaTarefas({ paginaInicial }: Props) {
+export function ListaTarefas({ paginaInicial, mensagemInicial }: Props) {
   const [mensagem, setMensagem] = useState<{
     tipo: TipoMensagem;
     texto: string;
-  } | null>(null);
+  } | null>(
+    mensagemInicial ? { tipo: "sucesso", texto: mensagemInicial } : null,
+  );
+
+  // Remove o ?sucesso= da URL para a mensagem não reaparecer ao recarregar a página.
+  useEffect(() => {
+    if (mensagemInicial) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+  }, [mensagemInicial]);
 
   const utils = trpc.useUtils();
 

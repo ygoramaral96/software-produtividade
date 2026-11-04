@@ -4,6 +4,10 @@
   padding: 32px 16px;
 }
 
+.tituloPagina {
+  margin-bottom: 24px;
+}
+
 .cabecalho {
   display: flex;
   justify-content: space-between;
