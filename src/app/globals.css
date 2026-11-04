@@ -1,12 +1,18 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --borda: #dddddd;
+  --texto-suave: #666666;
+  --perigo: #c62828;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --borda: #333333;
+    --texto-suave: #a0a0a0;
+    --perigo: #ef5350;
   }
 }
 
@@ -19,7 +25,7 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -33,6 +39,39 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Botões reutilizados na listagem e no formulário */
+.botao {
+  display: inline-block;
+  padding: 6px 14px;
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.botao:hover:not(:disabled) {
+  border-color: var(--foreground);
+}
+
+.botao:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.botaoPrimario {
+  background: var(--foreground);
+  color: var(--background);
+  border-color: var(--foreground);
+}
+
+.botaoPerigo {
+  color: var(--perigo);
+  border-color: var(--perigo);
 }
 
 @media (prefers-color-scheme: dark) {
