@@ -55,7 +55,7 @@ export function TarefaForm({ tarefa }: Props) {
   const atualizar = trpc.tarefas.atualizar.useMutation(opcoesMutation);
   const salvando = criar.isPending || atualizar.isPending;
 
-  function handleSubmit(evento: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(evento: React.SubmitEvent<HTMLFormElement>) {
     evento.preventDefault();
     setErroServidor(null);
 
